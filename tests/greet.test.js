@@ -1,14 +1,14 @@
 describe('Greetings languages', function() {
   it('should greet Ntando in English', function() {
     var greeter = GreetingFactory()
-    assert.equal(greeter.greeting('English', 'Ntando'), 'Hello, Ntando');
+    assert.equal(greeter.greeting('Ntando', 'English'), 'Hello, Ntando');
   });
   it('should greet Lunga in Afrikaans', function() {
     var greeter = GreetingFactory()
-    assert.equal(greeter.greeting('Afrikaans', 'Lunga'), 'Hallo, Lunga');
+    assert.equal(greeter.greeting('Lunga', 'Afrikaans'), 'Hallo, Lunga');
   });
   it('should greet BlessMess in French', function() {
     var greeter = GreetingFactory()
-    assert.equal(greeter.greeting('French', 'BlessMess'), 'Bonjour, BlessMess');
+    assert.equal(greeter.greeting('BlessMess','French'), 'Bonjour, BlessMess');
   });
 });

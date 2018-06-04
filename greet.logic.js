@@ -1,67 +1,36 @@
-function GreetingFactory(userStorages){
+function GreetingFactory(stored) {
 
+  var Names = stored || {};
+  var message = '';
 
-  var counter = 0;
-  var Names ='' ;
-  var languages = "" ;
+  function greeting(name, language){
+     Names[name] = 0;
+    if (language === "English") {
+      return 'Hello, ' + name;
+    }
+    else if (language === "Afrikaans") {
+      return 'Hallo, ' + name;
+    }
+    else if (language === "French") {
+      return 'Bonjour, ' + name;
+    }
+  }
 
-       function Counter(Name){
-        if(Name !== ""){
-          if (Name === undefined){
+  function forNames() {
+    return Names;
+  }
 
-         Name = 0;
+  function clear() {
+    return Names = {}
+  }
 
-         }
-         Name += 1;
-        }
-
-      }
-
-   function counterAmount(){
-
-        return(NamesGreeted)
-      }
-
-      function Selectlanguage(){
-
-        return languages;
-      }
-
-
-        function greeting(language, Names){
-          //console.log(Names);
-               Counter(Names);
-          if (language === "English"){
-              // Counter(name);
-             return languages = 'Hello, ' + Names;
-          }
-
-          if (language === "Afrikaans"){
-            // Counter(name);
-            return languages = 'Hallo, ' + Names ;
-          }
-
-          if (language === "French"){
-            // Counter(name);
-             return languages = 'Bonjour, '  + Names;
-          }
-
-        }
-
-        function clear(){
-          NamesGreeted = {}
-        }
-        function forNames(){
-          return Names;
-        }
-
-        return{
-        GreetingFactory,
-        greeting,
-        counterAmount,
-        Selectlanguage,
-        clear,
-        forNames
-     }
-
- }
+  function counter() {
+    return Object.keys(Names).length;
+  }
+  return {
+    greeting,
+    clear,
+    counter,
+    forNames
+  }
+}
