@@ -4,13 +4,12 @@ var languageRadioELem = document.querySelector('.languageRadio');
 var displayGreeting = document.querySelector('.displayGreeting');
 var greetBtn = document.querySelector('.greetButton');
 var clearBtn = document.querySelector('.clear');
+var People = localStorage.getItem('users');
 
-if (localStorage.getItem('users')){
-  Names = JSON.parse(localStorage.getItem('users'));
-}
-var GreetFactory = GreetingFactory();
-
-function greetingsDom(storedUsers){
+var storedUsers = People ? JSON.parse(People) : {};
+var GreetFactory = GreetingFactory(storedUsers);
+  counterElem.innerHTML = GreetFactory.counter();
+function greetingsDom(){
   counterElem.innerHTML = GreetFactory.counter();
   var checkedRadioBtn = document.querySelector("input[name='languageRadio']:checked");
   if (checkedRadioBtn) {
@@ -21,7 +20,7 @@ function greetingsDom(storedUsers){
     displayGreeting.style.color = 'Green'
     return;
   }
-  var textValue = textInputElem.value
+  var textValue = textInputElem.value.toUpperCase();
   localStorage.setItem('users', JSON.stringify(GreetFactory.forNames()));
 
   if (isNaN(textValue)) {
@@ -35,6 +34,9 @@ function greetingsDom(storedUsers){
 };
 greetBtn.addEventListener('click', function() {
   greetingsDom();
+  if(textInputElem.value!=''){
+    textInputElem.value = '';
+  }
 })
 
 clearBtn.addEventListener('click', function() {
