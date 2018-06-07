@@ -38,6 +38,7 @@ describe('Greetings languages', function() {
           it('should return the correct number of users inside the localstorage', function() {
           var greeter = GreetingFactory({"Druza":0,"Tido":0})
           greeter.greeting('Tido', 'English')
-            assert.equal(greeter.counter() ,2);
+          greeter.greeting('Ntando', 'English')
+            assert.equal(greeter.counter() ,3);
           });
 });
